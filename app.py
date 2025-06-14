@@ -480,16 +480,17 @@ def main():
             # Créer l'en-tête personnalisé-----------------------------------------------------------------------------------------
             today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             header = (
-                  f"Reéchantillonnage par A. ANGELICO et ZARAVITA\t"
+                  f"//Reéchantillonnage par A. ANGELICO et ZARAVITA\t"
                   f"date:{today}\t"
                   f"Nombre des points originales: {len(t_orig)}\t"
                   f"Nombres des points finales: {n_points}\n"
             )
             #--------------------------------------------AJOUT
             csv_content = header
+            csv_content += "time[ms]\tamplitude[g]\t\n"
             # Ajouter les données avec point-virgule comme séparateur
             for _, row in download_data.iterrows():
-                csv_content += f"{row['time[ms]']:.7f};{row['amplitude[g]']:.7f}\n"
+                csv_content += f"{row['time[ms]']:.7f}\t{row['amplitude[g]']:.7f}\t\n"
 
              #csv_content += download_data.to_csv(
              #   sep='\t', 
