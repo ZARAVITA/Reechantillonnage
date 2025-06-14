@@ -204,13 +204,24 @@ class VibrationResampler:
 def main():
     st.title("🔬 Analyseur de Ré-échantillonnage de Signaux Vibratoires")
     st.markdown("""
-    **Application scientifique pour l'analyse et le ré-échantillonnage de signaux vibratoires**
-    
-    Méthodes implémentées basées sur la littérature scientifique :
+    # **Application scientifique pour l'analyse et le ré-échantillonnage de signaux vibratoires**
+    L'objectif est de résoudre le ***problème d'insuffisance de données vibratoires enregistrées*** en appliquant des techniques de ré-échantillonnage scientifiquement validées pour augmenter la résolution temporelle des signaux.
+    ✨ **Fonctionnalités**
+       •📊 Génération de signaux synthétiques : Signaux vibratoires réalistes avec composantes fréquentielles industrielles
+       •📁 Import de données CSV : Support format personnalisé (séparateur ;, temps en ms)
+       •🔄 Ré-échantillonnage intelligent : 4 méthodes scientifiques avec paramètres ajustables
+       •📈 Visualisation comparative : Superposition des méthodes avec signal original
+       •📋 Métriques d'évaluation : MSE, MAE, RMSE, Corrélation, SNR
+       •🌊 Analyse spectrale : Comparaison FFT pour validation
+       •💾 Export des résultats : Téléchargement CSV des signaux traités
+       •💡 Recommandations automatiques : Sélection optimale basée sur les performances
+
+    **Méthodes implémentées basées sur la littérature scientifique** :
     - **Spline Cubique** : Unser (1999) - Optimal pour données modérées avec bruit faible
     - **FFT Resampling** : Oppenheim & Schafer - Idéal pour signaux périodiques
     - **SWT + Interpolation** : Mallat (2008) - Signaux transitoires/non-stationnaires  
     - **Gaussian Process Regression** : Rasmussen & Williams (2006) - Modélisation fine avec peu de points
+    Ce projet a été réalisé par **A. Angelico** et **ZARAVITA** dans le cadre de l'analyse vibratoire.
     """)
     
     # Initialisation de l'analyseur
