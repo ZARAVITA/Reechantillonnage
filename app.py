@@ -476,13 +476,17 @@ def main():
             )
             #--------------------------------------------AJOUT
             csv_content = header
-            csv_content += download_data.to_csv(
-                sep='\t', 
-                index=False, 
-                header=True,  # Garder les noms de colonnes
-                float_format="%.5f",  # Format des nombres flottants
-                lineterminator='\n'  # Terminaison de ligne standard
-             )
+            # Ajouter les données avec point-virgule comme séparateur
+            for _, row in download_data.iterrows():
+                csv_content += f"{row['time[ms]']:.7f};{row['amplitude[g]']:.7f}\n"
+
+             #csv_content += download_data.to_csv(
+             #   sep='\t', 
+             #   index=False, 
+             #  header=True,  # Garder les noms de colonnes
+             #   float_format="%.7f",  # Format des nombres flottants
+             #   lineterminator='\n'  # Terminaison de ligne standard
+             #)
     
             # Créer le buffer de téléchargement
             csv_buffer = BytesIO()
@@ -496,7 +500,7 @@ def main():
             
             st.download_button(
                 label=f"📥 Télécharger {resampler.methods[method_to_download]}",
-                data=csv_buffer.getvalue(),
+                data=csv_buffer,                       #csv_buffer.getvalue(),
                 file_name=f"signal_resampled_{method_to_download}_{n_points}pts.csv",
                 mime="text/csv"
             )
