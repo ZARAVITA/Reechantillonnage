@@ -466,10 +466,33 @@ def main():
                 'time[ms]': results[method_to_download]['t']*1000,       #------------------------------------------
                 'amplitude[g]': results[method_to_download]['y']         #---------------------------------
             })
-            
+            # Créer l'en-tête personnalisé-----------------------------------------------------------------------------------------
+            today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            header = (
+                  f"Reéchantillonnage par A. ANGELICO et ZARAVITA\t"
+                  f"date:{today}\t"
+                  f"Nombre des points originales: {len(t_orig)}\t"
+                  f"Nombres des points finales: {n_points}\n"
+            )
+            #--------------------------------------------AJOUT
+            csv_content = header
+            csv_content += download_data.to_csv(
+                sep='\t', 
+                index=False, 
+                header=True,  # Garder les noms de colonnes
+                float_format="%.5f",  # Format des nombres flottants
+                lineterminator='\n'  # Terminaison de ligne standard
+             )
+    
+            # Créer le buffer de téléchargement
             csv_buffer = BytesIO()
-            download_data.to_csv(csv_buffer, index=False)
+            csv_buffer.write(csv_content.encode('utf-8'))
             csv_buffer.seek(0)
+            
+            #-------------------------VRAI
+            #csv_buffer = BytesIO()
+            #download_data.to_csv(csv_buffer, index=False)
+            #csv_buffer.seek(0)
             
             st.download_button(
                 label=f"📥 Télécharger {resampler.methods[method_to_download]}",
