@@ -267,8 +267,8 @@ def main():
     n_points = st.sidebar.number_input(
         "Nombre de points souhaités",
         min_value=10,
-        max_value=max(10000, len(t_orig) * 4),                 # au lieu de 5000 fixe
-        value=min(len(t_orig) * 2, max_points)                 # au lieu de len(t_orig) * 2,
+        max_value=len(t_orig) * 5,                 # au lieu de 5000 fixe ou ça
+        value=len(t_orig) * 2,                     # au lieu de len(t_orig) * 2, min(len(t_orig) * 2, max_points)
         step=10
     )
     
