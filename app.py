@@ -463,8 +463,8 @@ def main():
         
         if method_to_download in results:
             download_data = pd.DataFrame({
-                'temps': results[method_to_download]['t'],
-                'amplitude': results[method_to_download]['y']
+                'time[ms]': results[method_to_download]['t']*1000,       #------------------------------------------
+                'amplitude[g]': results[method_to_download]['y']         #---------------------------------
             })
             
             csv_buffer = BytesIO()
